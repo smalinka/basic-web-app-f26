@@ -43,4 +43,12 @@ describe("QueryProcessor", () => {
         const response: string = QueryProcessor(query);
         expect(response).toBe("66");
     })
+
+    test('should compute large powers exactly', () => {
+        const query = "What is 18 to the power of 69?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe(
+            "410963122147519885718066723155689209764147116520545174410510008329199685768993065402368"
+        );
+    })
 });

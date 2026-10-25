@@ -23,6 +23,17 @@ export default function QueryProcessor(query: string): string {
     return sum.toString();
   }
 
+  // BigInt keeps large powers exact; loop instead of ** since target is es5
+  const powerMatch = query.match(/what is (-?\d+) to the power of (\d+)/i);
+  if (powerMatch) {
+    const base = BigInt(powerMatch[1]);
+    let result = BigInt(1);
+    for (let i = 0; i < parseInt(powerMatch[2], 10); i++) {
+      result = result * base;
+    }
+    return result.toString();
+  }
+
   if (query.toLowerCase().includes("largest")) {
     const numbers = query.match(/-?\d+/g);
     if (numbers) {
