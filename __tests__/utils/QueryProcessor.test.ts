@@ -25,4 +25,16 @@ describe("QueryProcessor", () => {
             "simon"
           ));
     })
+
+    test('should add two numbers', () => {
+        const query = "What is 14 plus 59?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("73");
+    })
+
+    test('should add more than two numbers', () => {
+        const query = "What is 1 plus 2 plus 3?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("6");
+    })
 });

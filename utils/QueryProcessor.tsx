@@ -15,7 +15,13 @@ export default function QueryProcessor(query: string): string {
     return "67";
   }
 
-
+  const addMatch = query.match(/what is (-?\d+(?:\s+plus\s+-?\d+)+)/i);
+  if (addMatch) {
+    const sum = addMatch[1]
+      .split(/\s+plus\s+/i)
+      .reduce((total, n) => total + parseInt(n, 10), 0);
+    return sum.toString();
+  }
 
   return "";
 }
